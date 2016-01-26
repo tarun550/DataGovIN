@@ -1,43 +1,109 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Datagovin by tarun550</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Datagovin</h1>
-        <p>A sample website demonstrating the usage of data.gov.in</p>
-        <p class="view"><a href="https://github.com/tarun550/DataGovIN">View the Project on GitHub <small>tarun550/DataGovIN</small></a></p>
-        <ul>
-          <li><a href="https://github.com/tarun550/DataGovIN/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/tarun550/DataGovIN/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/tarun550/DataGovIN">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a id="datagovin" class="anchor" href="#datagovin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DataGovIN</h1>
+    <section class="page-header">
+      <h1 class="project-name">Datagovin</h1>
+      <h2 class="project-tagline">A sample website demonstrating the usage of data.gov.in</h2>
+      <a href="https://github.com/tarun550/DataGovIN" class="btn">View on GitHub</a>
+      <a href="https://github.com/tarun550/DataGovIN/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/tarun550/DataGovIN/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-<p>A sample website demonstrating the usage of data.gov.in</p>
-      </section>
-    </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/tarun550">tarun550</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+    <section class="main-content">
+      <h1>
+<a id="datagovin-api-sample" class="anchor" href="#datagovin-api-sample" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data.gov.in API sample</h1>
+
+<p>A tutorial demonstrating the usage of data.gov.in (The documentation on the website not being elobraote enough)</p>
+
+<p>The data.gov.in APIs have a very simple format. The need a secret-key and an identifier for the data set.
+After that the request paramters mimic the SQL commands. So if you know SQL, this should be very easy.</p>
+
+<p>Lets start with the resource id. If I need to search the company master record of Uttar Pradesh(upto 2015), I have a predefined resource_id as "f8547c08-a7bf-4e85-b179-c57b5bd135a8". This needs to be one of the URL paramters.
+If you need the specific resource_id please visit [<a href="https://data.gov.in/catalogs">https://data.gov.in/catalogs</a>]</p>
+
+<p>Now lets get a secret key. You can easily get one after registering here [<a href="https://auth.mygov.in/user/register?destination=oauth2/register/datagovindia">https://auth.mygov.in/user/register?destination=oauth2/register/datagovindia</a>]</p>
+
+<p>So now lets get ready to write our own URL for the API.
+Please read the API documentation given in any of the catalogs. Then you can co-relate better with what is coming next</p>
+
+<p>Lets first start with what all fields are available to me, for the data API.
+I am going to set "limit=0", so that I donot get unnecessary data on my request.</p>
+
+<p>Do a call to <a href="https://data.gov.in/api/datastore/resource.json?resource_id=f8547c08-a7bf-4e85-b179-c57b5bd135a8&amp;api-key=API_KEY&amp;limit=0">https://data.gov.in/api/datastore/resource.json?resource_id=f8547c08-a7bf-4e85-b179-c57b5bd135a8&amp;api-key=API_KEY&amp;limit=0</a></p>
+
+<p>The response should be similar to</p>
+
+<pre><code>"help": "Search a datastore table. :param resource_id: id or alias of the data that is going to be selected."
+
+"success": false
+
+"count": 0
+
+"fields": {
+      "id": {
+            "type": "serial"
+            "size": "normal"
+            "unsigned": true
+            "not null": true
+            "description": ""
+      }-
+
+      "timestamp": {
+            "type": "timestamp"
+            "size": "normal"
+            "not null": true
+            "default": "CURRENT_TIMESTAMP"
+            "description": ""
+      }-
+
+      "CORPORATEIDENTIFICATIONNUMBER": {
+            "type": "varchar"
+            "size": "normal"
+            "length": "21"
+            "not null": false
+            "description": ""
+      }-
+
+      "DATEOFREGISTRATION": {
+            "type": "varchar"
+            "size": "normal"
+            "length": "10"
+            "not null": false
+            "description": ""
+      }-
+</code></pre>
+
+<p>...... and so on</p>
+
+<p>These are the "fields" which we can use in our query. Now we can use these fields to create a SQL like query.</p>
+
+<p>TO make things simple, lets say I wish to find "CORPORATEIDENTIFICATIONNUMBER" of all companies that are "Private".
+My query will be
+<a href="https://data.gov.in/api/datastore/resource.json?resource_id=f8547c08-a7bf-4e85-b179-c57b5bd135a8&amp;api-key=API_KEY&amp;limit=10&amp;filters%5BCOMPANYCLASS%5D=Private">https://data.gov.in/api/datastore/resource.json?resource_id=f8547c08-a7bf-4e85-b179-c57b5bd135a8&amp;api-key=API_KEY&amp;limit=10&amp;filters[COMPANYCLASS]=Private</a></p>
+
+<p>We can perform operations like JOIN, SORT, LIMIT AND OFFSET to make this API more interactive.</p>
+
+<p>From what I felt was that I cannot use operators other than "=". So its difficult to get records where a condition is negative.</p>
+
+<p>Please leave your comments incase you need more help.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/tarun550/DataGovIN">Datagovin</a> is maintained by <a href="https://github.com/tarun550">tarun550</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
