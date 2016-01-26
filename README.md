@@ -21,41 +21,59 @@ Do a call to https://data.gov.in/api/datastore/resource.json?resource_id=f8547c0
 The response should be similar to
 
 "help": "Search a datastore table. :param resource_id: id or alias of the data that is going to be selected."
+
 "success": false
+
 "count": 0
+
 "fields": {
-  "id": {
-    "type": "serial"
-    "size": "normal"
-    "unsigned": true
-    "not null": true
-    "description": ""
-  }-
-  "timestamp": {
-    "type": "timestamp"
-    "size": "normal"
-    "not null": true
-    "default": "CURRENT_TIMESTAMP"
-    "description": ""
-  }-
-  "CORPORATEIDENTIFICATIONNUMBER": {
-    "type": "varchar"
-    "size": "normal"
-    "length": "21"
-    "not null": false
-    "description": ""
-  }-
-  "DATEOFREGISTRATION": {
-    "type": "varchar"
-    "size": "normal"
-    "length": "10"
-    "not null": false
-    "description": ""
-  }-
-  ...... and so on
+	  "id": {
+		    "type": "serial"
+		    "size": "normal"
+		    "unsigned": true
+		    "not null": true
+		    "description": ""
+	  }-
+	  
+	  "timestamp": {
+		    "type": "timestamp"
+		    "size": "normal"
+		    "not null": true
+		    "default": "CURRENT_TIMESTAMP"
+		    "description": ""
+	  }-
+	  
+	  "CORPORATEIDENTIFICATIONNUMBER": {
+		    "type": "varchar"
+		    "size": "normal"
+		    "length": "21"
+		    "not null": false
+		    "description": ""
+	  }-
+	  
+	  "DATEOFREGISTRATION": {
+		    "type": "varchar"
+		    "size": "normal"
+		    "length": "10"
+		    "not null": false
+		    "description": ""
+	  }-
+	
+...... and so on
+
+These are the "fields" which we can use in our query. Now we can use these fields to create a SQL like query.
+
+TO make things simple, lets say I wish to find "CORPORATEIDENTIFICATIONNUMBER" of all companies that are "Private".
+My query will be
+https://data.gov.in/api/datastore/resource.json?resource_id=f8547c08-a7bf-4e85-b179-c57b5bd135a8&api-key=API_KEY&limit=10&filters[COMPANYCLASS]=Private
+
+We can perform operations like JOIN, SORT, LIMIT AND OFFSET to make this API more interactive.
+
+From what I felt was that I cannot use operators other than "=". So its difficult to get records where a condition is negative.
+
+Please leave your comments incase you need more help.
   
-  These are the "fields" which we can use in our query. Now we can use these fields to create a SQL like query.
   
-  TO make things simple, lets say I wish to find "CORPORATEIDENTIFICATIONNUMBER" of all companies that registered in 2015.
+  
   
 
