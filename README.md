@@ -20,44 +20,44 @@ Do a call to https://data.gov.in/api/datastore/resource.json?resource_id=f8547c0
 
 The response should be similar to
 
-"help": "Search a datastore table. :param resource_id: id or alias of the data that is going to be selected."
-
-"success": false
-
-"count": 0
-
-"fields": {
-	  "id": {
-		    "type": "serial"
-		    "size": "normal"
-		    "unsigned": true
-		    "not null": true
-		    "description": ""
-	  }-
-	  
-	  "timestamp": {
-		    "type": "timestamp"
-		    "size": "normal"
-		    "not null": true
-		    "default": "CURRENT_TIMESTAMP"
-		    "description": ""
-	  }-
-	  
-	  "CORPORATEIDENTIFICATIONNUMBER": {
-		    "type": "varchar"
-		    "size": "normal"
-		    "length": "21"
-		    "not null": false
-		    "description": ""
-	  }-
-	  
-	  "DATEOFREGISTRATION": {
-		    "type": "varchar"
-		    "size": "normal"
-		    "length": "10"
-		    "not null": false
-		    "description": ""
-	  }-
+	"help": "Search a datastore table. :param resource_id: id or alias of the data that is going to be selected."
+	
+	"success": false
+	
+	"count": 0
+	
+	"fields": {
+		  "id": {
+			    "type": "serial"
+			    "size": "normal"
+			    "unsigned": true
+			    "not null": true
+			    "description": ""
+		  }-
+		  
+		  "timestamp": {
+			    "type": "timestamp"
+			    "size": "normal"
+			    "not null": true
+			    "default": "CURRENT_TIMESTAMP"
+			    "description": ""
+		  }-
+		  
+		  "CORPORATEIDENTIFICATIONNUMBER": {
+			    "type": "varchar"
+			    "size": "normal"
+			    "length": "21"
+			    "not null": false
+			    "description": ""
+		  }-
+		  
+		  "DATEOFREGISTRATION": {
+			    "type": "varchar"
+			    "size": "normal"
+			    "length": "10"
+			    "not null": false
+			    "description": ""
+		  }-
 	
 ...... and so on
 
